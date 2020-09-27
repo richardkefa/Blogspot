@@ -3,9 +3,12 @@ from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from flask_admin import Admin
+
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+admin = Admin()
 login_manager.session_protection ='strong'
 login_manager.login_view = 'auth.login'
 
@@ -21,7 +24,7 @@ def create_app(config_name):
   db.init_app(app)
   login_manager.init_app(app)
   bootstrap = Bootstrap(app)
-
+  admin.init_app(app)
   
   #Registering the blueprint
   from .main import main as main_blueprint

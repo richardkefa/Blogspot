@@ -1,8 +1,9 @@
 from flask import render_template,redirect,url_for,flash,request
 from flask_login import login_user,logout_user,login_required
-from ..models import User
+from flask_admin.contrib.sqla import ModelView
+from ..models import User,BlogPost,Comment
 from .forms import RegistrationForm,LoginForm
-from .. import db
+from .. import db,admin
 from . import auth
 
 @auth.route('/register',methods=["GET","POST"])
@@ -33,3 +34,17 @@ def login():
 def logout():
   logout_user()
   return redirect(url_for("main.index"))
+
+  
+@auth.route('/admin') 
+class MyModelView(ModelView):
+  def is_accessible(self):
+    
+    return True
+#creating admin view
+admin.add_view(MyModelView(User,db.session))
+admin.add_view(MyModelView(BlogPost,db.session))
+admin.add_view(MyModelView(Comment,db.session))
+
+
+    

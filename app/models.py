@@ -1,6 +1,7 @@
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
+from flask_admin import Admin
 from . import login_manager
 
 @login_manager.user_loader
@@ -15,7 +16,6 @@ class User(UserMixin,db.Model):
   email = db.Column(db.String(),unique = True)
   role = db.Column(db.String(100))
   comments = db.relationship('Comment',backref = 'user',lazy="dynamic")
-  post = db.relationship('BlogPost',backref = 'user',lazy="dynamic")
   pass_secure = db.Column(db.String())
 
   @property
@@ -35,8 +35,6 @@ class BlogPost(db.Model):
   id = db.Column(db.Integer,primary_key = True)
   post_title = db.Column(db.String())
   post = db.Column(db.String())
-  priority = db.Column(db.String())
-  user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
   comments = db.relationship('Comment',backref = 'post',lazy="dynamic")
 
   
