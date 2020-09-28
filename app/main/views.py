@@ -6,6 +6,6 @@ from flask_login import login_required,current_user
 @main.route('/')
 def post():
   title ='Blog Post'
-  post = BlogPost.query.all()
+  posts = BlogPost.query.all()
   
   return render_template('index.html',posts = posts,title = title)

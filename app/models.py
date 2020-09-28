@@ -45,3 +45,13 @@ class Comment(db.Model):
   comment = db.Column(db.String())
   pitch_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+  
+  
+class Quotes:
+  '''
+  Quotes class
+  '''
+  
+  def __init__(self,author,quote):
+    self.author = author
+    self.quote = quote

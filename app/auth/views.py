@@ -3,7 +3,7 @@ from flask_login import login_user,logout_user,login_required
 from flask_admin.contrib.sqla import ModelView
 from ..models import User,BlogPost,Comment
 from .forms import RegistrationForm,LoginForm
-from .. import db,admin
+from .. import db,admin,main
 from . import auth
 
 @auth.route('/register',methods=["GET","POST"])
