@@ -37,15 +37,26 @@ class BlogPost(db.Model):
   post = db.Column(db.String())
   comments = db.relationship('Comment',backref = 'post',lazy="dynamic")
 
-  
+  def __repr__(self):
+    return f"BlogPost('{self.post_title}','{self.post}')"
 class Comment(db.Model):
   __tablename__='comments'
   
   id = db.Column(db.Integer,primary_key = True)
   comment = db.Column(db.String())
-  pitch_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
+  dateposted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+  post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
   
+  
+  def save_comment(self):
+    db.session.add(self)
+    db.session.commit()
+    
+  @classmethod
+  def get_comments(cls,post_id):
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    return comments
   
 class Quotes:
   '''

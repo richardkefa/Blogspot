@@ -7,6 +7,7 @@ from flask_admin import Admin
 
 
 db = SQLAlchemy()
+bootstrap = Bootstrap()
 login_manager = LoginManager()
 admin = Admin()
 login_manager.session_protection ='strong'
@@ -22,8 +23,8 @@ def create_app(config_name):
   
   #Intinilizing flask extensions
   db.init_app(app)
+  bootstrap.init_app(app)
   login_manager.init_app(app)
-  bootstrap = Bootstrap(app)
   admin.init_app(app)
   
   #Registering the blueprint

@@ -1,5 +1,6 @@
 import urllib.request, json
 from .models import Quotes
+from flask import render_template
 
 base_url=None
 
@@ -17,6 +18,22 @@ def get_quote():
     
     quote_results = None
     
-    quote_results_list = get_quote_response
+    quote_results = process_results(get_quote_response)
     
+  return quote_results
+
+def process_results(quote_list):
+  '''
+  function to processes the quote result
+  '''
+  quote_result =[]
+  for quote_item in quote_list
+  author = quote_item.get('author')
+  quote = quote_item.get('quote')
+    
+  quote_object = Quotes(id,author)
+  quote_result.append(quote_object)
+  
+  return quote_result
+
   
