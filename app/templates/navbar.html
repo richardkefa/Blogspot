@@ -24,7 +24,7 @@
 <body>
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-      <a class="navbar-brand" href="#">The Insight</a>
+      <a class="navbar-brand mt-2" href="{{url_for('main.post')}}" style="font-size: large; margin-right: 50vw;">The Insight</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,21 +32,18 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           {% if current_user.is_authenticated %}
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('auth.logout')}}" style="font-size: small;">Logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('auth.logout')}}">Logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">{{current_user.username}}</a>
+            <a class="nav-link" href="#" style="font-size: small;">{{current_user.username}}</a>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
+            <a class="nav-link" href="{{url_for('auth.login')}}" style="font-size: small;">Login</a>
           </li>
+          {% endif %}
         </ul>
-        {% endif %}
       </div>
     </nav>
   </div>

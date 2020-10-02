@@ -4,13 +4,13 @@ from ..models import User,BlogPost,Comment
 from flask_login import login_required,current_user
 from .forms import CommentForm
 from .. import db
-from ..request import get_quote
+from ..request import get_quotes
 
 
 @main.route('/')
 def post():
   title ='Blog Post'
-  quotes = get_quote()
+  quotes = get_quotes()
   posts = BlogPost.query.all()
   
   return render_template('index.html',quotes = quotes,posts = posts,title = title)
@@ -21,7 +21,7 @@ def comment(post_id):
   post = BlogPost.query.get(post_id)
   post_comment = Comment.query.filter_by(post_id=post_id).all()
   
-  if form.validate_on_submit()
+  if form.validate_on_submit():
     comment = form.comment.data
     post_id = post_id
     user_id = current_user._get_current_object().id

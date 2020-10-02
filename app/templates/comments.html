@@ -1,15 +1,28 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
+{% import 'macros.html' as macro %}
 
-(% block content %)
-<div class="row">
-  <div class="col-md-5">
-    <div class="text-white">
-      {{wtf.quick_form(form)}}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <!-- Card -->
+      <div class="card">
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Text -->
+          <h5 class="card-title">Post</h5>
+          <p class="card-text" style="font-size: medium;">{{post.post}}}</p>
+        </div>
+      </div>
+
+      <div class="text-white">
+        {{wtf.quick_form(form)}}
+      </div>
     </div>
-  </div>
-  <div class="col-md-7">
-    
+    <div class="col-md-7">
+      {{macro. displayallcomments(post_comment)}}
+    </div>
   </div>
 </div>
 {% endblock %}
