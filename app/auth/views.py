@@ -46,7 +46,7 @@ class MyModelView(ModelView):
     
     return True  
 @auth.route('/admin') 
-admin():
+def admin():
 #creating admin view
   admin.add_view(MyModelView(User,db.session))
   admin.add_view(MyModelView(BlogPost,db.session))
