@@ -16,6 +16,7 @@ def post():
   return render_template('index.html',quotes = quotes,posts = posts,title = title)
 
 @main.route('/comment/<int:post_id>',methods = ['POST','GET'])
+@login_required
 def comment(post_id):
   form = CommentForm()
   post = BlogPost.query.get(post_id)
