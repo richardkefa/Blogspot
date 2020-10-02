@@ -41,16 +41,16 @@ def logout():
   logout_user()
   return redirect(url_for("main.post"))
 
-class MyModelView(ModelView):
-  def is_accessible(self):
+# class MyModelView(ModelView):
+#   def is_accessible(self):
     
-    return True  
-@auth.route('/admin') 
-def admin():
-#creating admin view
-  admin.add_view(MyModelView(User,db.session))
-  admin.add_view(MyModelView(BlogPost,db.session))
-  admin.add_view(MyModelView(Comment,db.session))
-return admin
+#     return True  
+# @auth.route('/admin') 
+# def admin():
+# #creating admin view
+#   admin.add_view(MyModelView(User,db.session))
+#   admin.add_view(MyModelView(BlogPost,db.session))
+#   admin.add_view(MyModelView(Comment,db.session))
+# return admin
 
     
