@@ -2,7 +2,7 @@ from flask import redirect,render_template,url_for,request,abort
 from . import main
 from ..models import User,BlogPost,Comment
 from flask_login import login_required,current_user
-from .forms import CommentForm
+from .forms import CommentForm,BlogForm
 from .. import db
 from ..request import get_quotes
 
@@ -31,4 +31,22 @@ def comment(post_id):
     return redirect(url_for('.comment', post_id = post_id))
     
   return render_template('comments.html', form = form, post=post, post_comment=post_comment)
+
+@main.route('/new_post', methods=['POSt','GET'])
+def new_blog():
+  form = BlogForm()
+  if form.validate_on_submit():
+    post_title = form.title.data
+    post = form.post.data
+    user_id = current_user._get_current_object().import ipdb; ipdb.set_trace()
+    blog = Blog(post_title=post_title,post=post,user_id=user_id)
+    blog.saveblog()
+    flash('you have posted a new blog')
+    
+  return render_template('newblog.html',form = form)
   
+  
+@main.route('/blog_update/<blog_id>', methods = ['GET' , 'POST'])
+def updateblog(post_id):
+  blog = BlogPost.query.get(post_id)
+  if blog.
